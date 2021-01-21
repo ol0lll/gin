@@ -60,13 +60,12 @@ gin_dialog:
     theme:
       dist/css/gin_dialog.css: { minified: true }
 
-gin_form-description-toggle:
+gin_description_toggle:
+  css:
+    theme:
+      dist/css/gin_description_toggle.css: { minified: true }
   js:
-    dist/js/gin_form-description-toggle.js: { minified: true}
-
-gin_form-description-toggle:
-  js:
-    dist/js/gin_form-description-toggle.js: { minified: true}
+    dist/js/gin_description_toggle.js: { minified: true}
 
 gin_custom_css:
   version: VERSION

@@ -98,6 +98,25 @@ function gin_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_form_element().
+ */
+function gin_preprocess_form_element(&$variables) {
+  if (_gin_descriptiontoggle_enabled() && !empty($variables['description'])) {
+    $variables['description_display'] = 'invisible';
+    $variables['description_toggle'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_details().
+ */
+function gin_preprocess_details(&$variables) {
+  if (_gin_descriptiontoggle_enabled() && !empty($variables['description'])) {
+    $variables['description_toggle'] = TRUE;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page_alter.
  */
 function gin_theme_suggestions_page_alter(&$suggestions, $variables) {
@@ -384,6 +403,20 @@ function gin_form_user_form_alter(&$form, FormStateInterface $form_state) {
       '#weight' => 0,
     ];
 
+    $sdt_value = $userData->get('gin', $user->id(), 'show_description_toggle');
+
+    if ($sdt_value == NULL) {
+      $sdt_value = theme_get_setting('show_description_toggle') == TRUE ? TRUE : FALSE;
+    }
+
+    $form['gin_theme_settings']['user_settings']['show_description_toggle'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Enable form description toggle.'),
+      '#description' => t('Adds a button to show/hide description (help) content on form elements.'),
+      '#default_value' => $sdt_value !== NULL ? $sdt_value : 0,
+      '#weight' => 0,
+    ];
+
     $toolbarValue = $userData->get('gin', $user->id(), 'classic_toolbar');
 
     if ($toolbarValue == NULL) {
@@ -663,6 +696,15 @@ function gin_form_system_theme_settings_alter(&$form, FormStateInterface $form_s
     '#default_value' => $hcm_default,
   ];
 
+  $showDescriptionToggle = theme_get_setting('show_description_toggle');
+
+  $form['custom_settings']['show_description_toggle'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable form description toggle.'),
+    '#description' => t('Adds a button to show/hide description (help) content on form elements.'),
+    '#default_value' => $showDescriptionToggle,
+  ];
+
   // Allow user settings.
   $showUserThemeSettings = theme_get_setting('show_user_theme_settings');
 
@@ -862,6 +904,9 @@ function _gin_user_form_submit(&$form, FormStateInterface $form_state) {
 
     $highContrastValue = $form_state->getValue('high_contrast_mode');
     $userData->set('gin', $user->id(), 'high_contrast_mode', $highContrastValue);
+
+    $descriptionToggleValue = $form_state->getValue('show_description_toggle');
+    $userData->set('gin', $user->id(), 'show_description_toggle', $descriptionToggleValue);
   }
 }
 
@@ -1182,6 +1227,35 @@ function _gin_user__get_highcontrastmode_enabled() {
   }
 }
 
+/**
+ * Enable high contrast mode helper function.
+ */
+function _gin_descriptiontoggle_enabled() {
+  // Get user config.
+  if (_gin_user__overrides_enabled()) {
+    return _gin_user__get_descriptiontoggle_enabled();
+  } // Get general config.
+  else {
+    return theme_get_setting('show_description_toggle');
+  }
+}
+
+/**
+ * Check user has enabled high contrast mode helper function.
+ */
+function _gin_user__get_descriptiontoggle_enabled() {
+  $uid = _gin_user__get_user_id();
+
+  if ($uid) {
+    /** @var \Drupal\user\UserDataInterface $userData */
+    $userData = Drupal::service('user.data');
+
+    return $userData->get('gin', $uid, 'show_description_toggle');
+  }
+  else {
+    return FALSE;
+  }
+}
 /**
  * Helper function for logo.
  *

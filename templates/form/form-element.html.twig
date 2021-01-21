@@ -3,8 +3,6 @@
  * @file
  * Theme override for a form element.
  *
- * @todo Remove when https://www.drupal.org/node/3010558 is fixed.
- *
  * @see template_preprocess_form_element()
  */
 #}
@@ -37,7 +35,7 @@ js-form-type-[something] exists on form items. We have to keep them.
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}
-  {% if description.content %}
+  {% if description.content and description_toggle %}
   <div class="help-icon__element-has-description">
   {% endif %}
   {% if prefix is not empty %}
@@ -55,9 +53,9 @@ js-form-type-[something] exists on form items. We have to keep them.
   {% if label_display == 'after' %}
     {{ label }}
   {% endif %}
-  {% if description.content %}
-    {{ attach_library('gin/gin_form-description-toggle') }}
-    <button class="button help-icon__description-toggle"></button>
+  {% if description.content and description_toggle %}
+    {{ attach_library('gin/gin_description_toggle') }}
+    <button class="help-icon__description-toggle"></button>
   </div>
   {% endif %}
   {% if errors %}

@@ -30,7 +30,7 @@ Prefix 'details' class to avoid collision with Modernizr.
   'claro-details',
   accordion ? 'claro-details--accordion',
   accordion_item ? 'claro-details--accordion-item',
-  description ? 'help-icon__description-container',
+  description_toggle ? 'help-icon__description-container',
   element['#module_package_listing'] ? 'claro-details--package-listing',
 ]
 %}
@@ -51,6 +51,13 @@ Prefix 'details' class to avoid collision with Modernizr.
   element['#module_package_listing']  ? 'claro-details__content--package-listing',
 ]
 %}
+{%
+set description_classes = [
+  'claro-details__description',
+  description_display == 'invisible' ? 'visually-hidden',
+  disabled ? 'is-disabled',
+]
+%}
 <details{{ attributes.addClass(classes) }}>
   {%- if title -%}
     {%
@@ -68,9 +75,9 @@ Prefix 'details' class to avoid collision with Modernizr.
       {%- if required -%}
         <span class="required-mark"></span>
       {%- endif -%}
-      {% if description %}
-        {{ attach_library('gin/gin_form-description-toggle') }}
-        <button class="button help-icon__description-toggle"></button>
+      {% if description and description_toggle%}
+        {{ attach_library('gin/gin_description_toggle') }}
+        <button class="help-icon__description-toggle"></button>
       {% endif %}
     </summary>
   {%- endif -%}
@@ -85,7 +92,7 @@ Prefix 'details' class to avoid collision with Modernizr.
         </div>
       {% endif %}
       {%- if description -%}
-        <div class="claro-details__description visually-hidden{{ disabled ? ' is-disabled' }}">{{ description }}</div>
+        <div{{ create_attribute({class: description_classes}) }}>{{ description }}</div>
       {%- endif -%}
       {%- if children -%}
         {{ children }}

@@ -4,21 +4,39 @@
 /* Wraps element and toggle. */
 .help-icon__element-has-description {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
+
 /* Size of svg + border added by claro*/
 .help-icon__description-toggle {
-  @include custom-icon-button('help');
-  flex: 0 0 auto;
-  align-self: flex-end;
+  all: unset;
   margin: 0 0 0 8px;
-  width: 26px;
-  height: 26px;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+
+  &:before {
+    background-color: var(--colorGinIcons);
+    content: "";
+    display: block;
+    width: 24px;
+    height: 100%;
+    mask-image: icon('help');
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: 20px 20px;
+  }
+
+  &:hover:before {
+    background-color: var(--colorGinPrimary);
+  }
 }
+
 /* Full width checkbox label. */
 .form-item:not(.form-type--checkbox) .help-icon__element-has-description label {
   flex-basis: 100%;
 }
+
 /*
  * 1. Subtract description toggle width from input fields.
  */
@@ -26,6 +44,7 @@
 .help-icon__element-has-description select {
   max-width: calc(100% - 34px); /* 1 */
 }
+
 /* Float toggle in detail summary. */
 details.help-icon__description-container .help-icon__description-toggle {
   float: right;

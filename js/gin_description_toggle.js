@@ -14,6 +14,7 @@
               description.classList.toggle('visually-hidden');
             };
             event.preventDefault();
+            event.currentTarget.focus(); // firefox button focus issue
             event.currentTarget
               .closest('.help-icon__description-container')
               .querySelectorAll(

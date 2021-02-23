@@ -67,10 +67,13 @@ gin_description_toggle:
   js:
     dist/js/gin_description_toggle.js: { minified: true}
 
+gin_messages:
+  version: VERSION
+  js:
+    dist/js/gin_messages.js: { minified: true }
+
 gin_custom_css:
   version: VERSION
   css:
     theme:
       public://gin-custom.css: { weight: 100 }
-  js:
-    public://gin-custom.js: { weight: -99 }

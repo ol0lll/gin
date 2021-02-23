@@ -32,8 +32,14 @@
   }
 }
 
-/* Full width checkbox label. */
-.form-item:not(.form-type--checkbox) .help-icon__element-has-description label {
+
+/* Checkboxes with toggle: specific selector copied from _from.scss */
+:not(.form-checkboxes):not(td):not(.media-library-item__click-to-select-checkbox):not(.field-content) > .form-type--checkbox {
+  .help-icon__element-has-description.help-icon__element-has-description > label {
+    padding-left: 8px;
+  }
+}
+:not(.form-type--checkbox) > .help-icon__element-has-description > label {
   flex-basis: 100%;
 }
 

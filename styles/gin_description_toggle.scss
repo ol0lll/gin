@@ -32,23 +32,25 @@
   }
 }
 
+.form-type--checkbox,
+.form-type--radio {
+  > .help-icon__element-has-description {
+    align-items: normal;
 
-/* Checkboxes with toggle: specific selector copied from _from.scss */
-:not(.form-checkboxes):not(td):not(.media-library-item__click-to-select-checkbox):not(.field-content) > .form-type--checkbox {
-  .help-icon__element-has-description.help-icon__element-has-description > label {
-    padding-left: 8px;
+    > label {
+      margin-left: 6px;
+    }
   }
-}
-:not(.form-type--checkbox) > .help-icon__element-has-description > label {
-  flex-basis: 100%;
 }
 
 /*
  * 1. Subtract description toggle width from input fields.
  */
-.help-icon__element-has-description input:not(.form-checkbox):not(.form-autocomplete),
-.help-icon__element-has-description select {
-  max-width: calc(100% - 34px); /* 1 */
+.help-icon__element-has-description {
+  input:not(.form-checkbox):not(.form-autocomplete):not(.form-file),
+  select {
+    max-width: calc(100% - 34px); /* 1 */
+  }
 }
 
 /* Float toggle in detail summary. */

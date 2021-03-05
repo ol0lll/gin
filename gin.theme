@@ -422,7 +422,7 @@ function gin_form_user_form_alter(&$form, FormStateInterface $form_state) {
     $form['gin_theme_settings']['user_settings']['show_description_toggle'] = [
       '#type' => 'checkbox',
       '#title' => t('Enable form description toggle.'),
-      '#description' => t('Adds a button to show/hide description (help) content on form elements.'),
+      '#description' => t('Show a help icon to show/hide form descriptions on content forms.'),
       '#default_value' => $sdt_value !== NULL ? $sdt_value : 0,
       '#weight' => 0,
     ];
@@ -711,7 +711,7 @@ function gin_form_system_theme_settings_alter(&$form, FormStateInterface $form_s
   $form['custom_settings']['show_description_toggle'] = [
     '#type' => 'checkbox',
     '#title' => t('Enable form description toggle.'),
-    '#description' => t('Adds a button to show/hide description (help) content on form elements.'),
+    '#description' => t('Show a help icon to show/hide form descriptions on content forms.'),
     '#default_value' => $showDescriptionToggle,
   ];
 

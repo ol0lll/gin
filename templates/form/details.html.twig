@@ -27,36 +27,36 @@ Prefix 'details' class to avoid collision with Modernizr.
 
 {%
   set classes = [
-  'claro-details',
-  accordion ? 'claro-details--accordion',
-  accordion_item ? 'claro-details--accordion-item',
-  description_toggle ? 'help-icon__description-container',
-  element['#module_package_listing'] ? 'claro-details--package-listing',
-]
+    'claro-details',
+    accordion ? 'claro-details--accordion',
+    accordion_item ? 'claro-details--accordion-item',
+    description_toggle ? 'help-icon__description-container',
+    element['#module_package_listing'] ? 'claro-details--package-listing',
+  ]
 %}
 {%
   set content_wrapper_classes = [
-  'claro-details__wrapper',
-  'details-wrapper',
-  accordion ? 'claro-details__wrapper--accordion',
-  accordion_item ? 'claro-details__wrapper--accordion-item',
-  element['#module_package_listing'] ? 'claro-details__wrapper--package-listing',
-]
+    'claro-details__wrapper',
+    'details-wrapper',
+    accordion ? 'claro-details__wrapper--accordion',
+    accordion_item ? 'claro-details__wrapper--accordion-item',
+    element['#module_package_listing'] ? 'claro-details__wrapper--package-listing',
+  ]
 %}
 {%
   set inner_wrapper_classes = [
-  'claro-details__content',
-  accordion ? 'claro-details__content--accordion',
-  accordion_item ? 'claro-details__content--accordion-item',
-  element['#module_package_listing']  ? 'claro-details__content--package-listing',
-]
+    'claro-details__content',
+    accordion ? 'claro-details__content--accordion',
+    accordion_item ? 'claro-details__content--accordion-item',
+    element['#module_package_listing']  ? 'claro-details__content--package-listing',
+  ]
 %}
 {%
-set description_classes = [
-  'claro-details__description',
-  description_display == 'invisible' ? 'visually-hidden',
-  disabled ? 'is-disabled',
-]
+  set description_classes = [
+    'claro-details__description',
+    description_display == 'invisible' ? 'visually-hidden',
+    disabled ? 'is-disabled',
+  ]
 %}
 <details{{ attributes.addClass(classes) }}>
   {%- if title -%}
@@ -75,7 +75,7 @@ set description_classes = [
       {%- if required -%}
         <span class="required-mark"></span>
       {%- endif -%}
-      {% if description and description_toggle%}
+      {% if description and description_toggle %}
         {{ attach_library('gin/gin_description_toggle') }}
         <button class="help-icon__description-toggle"></button>
       {% endif %}

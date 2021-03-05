@@ -98,7 +98,7 @@ function gin_preprocess_page(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_form_element().
+ * Implements template_preprocess_HOOK() for form_element.
  */
 function gin_preprocess_form_element(&$variables) {
   if (_gin_descriptiontoggle_enabled() && !empty($variables['description'])) {
@@ -108,7 +108,17 @@ function gin_preprocess_form_element(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_details().
+ * Implements template_preprocess_HOOK() for datetime_wrapper.
+ */
+function gin_preprocess_datetime_wrapper(&$variables) {
+  if (_gin_descriptiontoggle_enabled() && !empty($variables['description'])) {
+    $variables['description_display'] = 'invisible';
+    $variables['description_toggle'] = TRUE;
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for details.
  */
 function gin_preprocess_details(&$variables) {
   if (_gin_descriptiontoggle_enabled() && !empty($variables['description'])) {
@@ -1228,9 +1238,13 @@ function _gin_user__get_highcontrastmode_enabled() {
 }
 
 /**
- * Enable high contrast mode helper function.
+ * Enable description toggle (help icon).
  */
 function _gin_descriptiontoggle_enabled() {
+  // Enable only on content edit forms.
+  if (!_gin_is_content_form()) {
+    return FALSE;
+  }
   // Get user config.
   if (_gin_user__overrides_enabled()) {
     return _gin_user__get_descriptiontoggle_enabled();

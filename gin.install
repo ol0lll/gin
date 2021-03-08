@@ -49,3 +49,15 @@ function gin_update_8304() {
     ->set('show_user_theme_settings', false)
     ->save();
 }
+
+/**
+ * Update: Set show_description_toggle to true.
+ */
+function gin_update_8305() {
+  /** @var \Drupal\Core\Config\Config $config */
+  $config = \Drupal::configFactory()->getEditable('gin.settings');
+  $config
+    ->set('show_description_toggle', true)
+    ->save();
+}
+

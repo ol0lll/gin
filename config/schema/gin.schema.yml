@@ -33,6 +33,9 @@ gin.settings:
     icon_upload:
       type: string
       label: 'The icon upload'
+    show_description_toggle:
+      type: boolean
+      label: 'Display help icon to toggle form description'
     show_user_theme_settings:
       type: boolean
       label: 'Let user override theme'

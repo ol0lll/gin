@@ -274,6 +274,11 @@ function gin_form_alter(&$form, $form_state, $form_id) {
       // Unset previous added preview & submit.
       unset($form['gin_sidebar']['actions']['preview']);
       unset($form['gin_sidebar']['actions']['submit']);
+      // Add sidebar zipper.
+      $form['gin_sidebar_toggle'] = [
+        '#markup' => '<span class="meta-sidebar__trigger trigger" role="button" title="' . t('Toggle entity meta panel') . '" aria-pressed="false"></span>',
+      ];
+      $form['#attached']['library'][] = 'gin/gin_sidebar';
     }
 
     // Attach library.

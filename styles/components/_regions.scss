@@ -241,33 +241,7 @@ body:not(.toolbar-tray-open) .layout-container {
   }
 
   @include mq($breakpointLarge) {
-    z-index: 101; // Fix menus not showing
-    position: sticky;
-    top: 0;
-    margin-top: -145px;
-    margin-left: calc(100% + 1.5rem);
-    transform: translateX(-100%);
-    height: $stickyBar;
-    bottom: auto;
-    padding: 0;
-    border-bottom: 0 none;
-    box-shadow: none;
-
-    .gin--horizontal-toolbar & {
-      top: $toolbarHorizontal;
-    }
-
-    .gin--classic-toolbar & {
-      top: 39px;
-    }
-
-    .gin--classic-toolbar.toolbar-tray-open & {
-      top: 79px;
-    }
-
-    .gin-sticky {
-      display: none;
-    }
+    display: none; // Hide the real deal
   }
 
   @include mq($breakpointBig) {

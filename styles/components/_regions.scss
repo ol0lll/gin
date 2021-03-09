@@ -58,7 +58,7 @@
 
   &__items {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     margin-bottom: 1rem;
 
     @include mq($breakpointSmall) {
@@ -69,14 +69,26 @@
       }
     }
 
-    @include mq($breakpointLarge) {
-      flex-wrap: nowrap;
-      align-items: center;
-      margin-bottom: 0;
+    &__inner {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
 
-      .block-page-title-block,
-      .local-actions {
-        margin: 0;
+      // Set max-width to max content-width
+      .gin--edit-form & {
+        max-width: $breakpointWide;
+        margin: 0 auto;
+      }
+
+      @include mq($breakpointLarge) {
+        flex-wrap: nowrap;
+        align-items: center;
+        margin-bottom: 0;
+
+        .block-page-title-block,
+        .local-actions {
+          margin: 0;
+        }
       }
     }
 

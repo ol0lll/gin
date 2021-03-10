@@ -1,0 +1,59 @@
+// Helpers
+@import "helpers/**/*";
+
+/* Wraps element and toggle. */
+.help-icon__element-has-description {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Size of svg + border added by claro*/
+.help-icon__description-toggle {
+  all: unset;
+  margin: 0 0 0 8px;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+
+  &:before {
+    background-color: var(--colorGinIcons);
+    content: "";
+    display: block;
+    width: 24px;
+    height: 100%;
+    mask-image: icon('help');
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: 20px 20px;
+  }
+
+  &:hover:before {
+    background-color: var(--colorGinPrimary);
+  }
+}
+
+.form-type--checkbox,
+.form-type--radio {
+  > .help-icon__element-has-description {
+    align-items: normal;
+
+    > label {
+      margin-left: 6px;
+    }
+  }
+}
+
+/*
+ * 1. Subtract description toggle width from input fields.
+ */
+.help-icon__element-has-description {
+  input:not(.form-checkbox):not(.form-autocomplete):not(.form-file),
+  select {
+    max-width: calc(100% - 34px); /* 1 */
+  }
+}
+
+/* Float toggle in detail summary. */
+details.help-icon__description-container .help-icon__description-toggle {
+  float: right;
+}

@@ -60,6 +60,18 @@ gin_dialog:
     theme:
       dist/css/gin_dialog.css: { minified: true }
 
+gin_description_toggle:
+  css:
+    theme:
+      dist/css/gin_description_toggle.css: { minified: true }
+  js:
+    dist/js/gin_description_toggle.js: { minified: true}
+
+gin_editform:
+  version: VERSION
+  js:
+    dist/js/gin_editform.js: { minified: true }
+
 gin_messages:
   version: VERSION
   js:
@@ -70,3 +82,11 @@ gin_custom_css:
   css:
     theme:
       public://gin-custom.css: { weight: 100 }
+
+gin_sidebar:
+  version: VERSION
+  css:
+    theme:
+      dist/css/gin_sidebar.css: { minified: true }
+  js:
+    dist/js/gin_sidebar.js: { minified: true }

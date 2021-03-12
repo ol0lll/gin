@@ -7,7 +7,7 @@
     attach: function attach() {
       const form = document.querySelector('.region-content form');
       const sticky = document.querySelector('.gin-sticky').cloneNode(true);
-      const newParent = document.querySelector('.region-sticky__items');
+      const newParent = document.querySelector('.region-sticky__items__inner');
 
       if (newParent.querySelectorAll('.gin-sticky').length === 0) {
         newParent.appendChild(sticky);
